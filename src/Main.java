@@ -1,15 +1,31 @@
+import java.util.Random;
+
 //TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 public class Main {
-    public static void main(String[] args) {
-        //TIP Press <shortcut actionId="ShowIntentionActions"/> with your caret at the highlighted text
-        // to see how IntelliJ IDEA suggests fixing it.
-        System.out.printf("Hello and welcome!");
 
-        for (int i = 1; i <= 5; i++) {
-            //TIP Press <shortcut actionId="Debug"/> to start debugging your code. We have set one <icon src="AllIcons.Debugger.Db_set_breakpoint"/> breakpoint
-            // for you, but you can always add more by pressing <shortcut actionId="ToggleLineBreakpoint"/>.
-            System.out.println("i = " + i);
+    private static final Random rand = new Random();
+    private static final InputUser inputHandler = new InputUser();
+
+    public static void main(String[] args) {
+
+        runDiceGame();
+
+    }
+
+    public static int rollDice(){
+
+        return rand.nextInt(6)+1;
+    }
+
+    public static void runDiceGame(){
+
+        int rolls = inputHandler.getNumber("How many times would you like to roll the dice? (1-100) :",1,100);
+
+        for(int i = 0 ; i < rolls ; i++){
+            int result = rollDice();
+            System.out.println("Roll "+(i+1) +": "+result);
         }
+        inputHandler.closeScanner();
     }
 }
